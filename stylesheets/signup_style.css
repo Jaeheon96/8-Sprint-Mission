@@ -14,6 +14,7 @@
     --gray50: #f9fafb;
 
     --blue: #3692ff;
+    --red: #f74747;
 }
 
 body {
@@ -36,18 +37,21 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0 16px;
 }
 
-form label{
+.pseudo-form label{
     color: var(--gray800);
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 16px;
     display: inline-block;
+    width: 100%;
+    position:relative;
 }
 
 main .container {
-    width: 90%;
+    width: 100%;
     max-width: 640px;
     padding: 40px 0;
 }
@@ -59,14 +63,34 @@ main .container {
     background-color: var(--gray100);
     border: none;
     padding: 22px;
-    margin-bottom: 20px;
+    margin-bottom: 1.625rem;
     font-size: 16px;
     font-weight: 400;
     color: var(--gray800);
 }
 
+.text-input.errored {
+    outline: solid 1px var(--red);
+}
+
+.text-input.correct {
+    outline: solid 1px var(--blue);
+}
+
 .text-input:focus {
-    outline: solid var(--blue);
+    outline: solid 3px var(--blue);
+}
+
+.error-message {
+    position: absolute;
+    left: 10px;
+    bottom: -92px;
+    font-size: 0.8rem;
+    color: var(--red);
+}
+
+.error-message.hidden {
+    display: none;
 }
 
 .text-input::placeholder {
@@ -83,17 +107,17 @@ main .container {
     position: relative;
 }
 
-.eye-icon {
+.password-visibility-icon {
     position: absolute;
     top: 17px;
     right: 22px;
 }
 
-.eye-icon:hover {
+.password-visibility-icon:hover {
     cursor: pointer;
 }
 
-.doit {
+.action-button {
     background-color: var(--gray400);
     border-radius: 40px;
     width: 100%;
@@ -103,6 +127,10 @@ main .container {
     color: #ffffff;
     border: none;
     margin: 10px 0;
+}
+
+.action-button.valid {
+    background-color: var(--blue);
 }
 
 .easy-login {
@@ -137,4 +165,14 @@ main .container {
 
 .signup-link a {
     color: #3182f6
+}
+
+@media (max-width: 767px) {
+    .header-img {
+        height: 100px;
+    }
+
+    main .container {
+        max-width: 400px;
+    }
 }
