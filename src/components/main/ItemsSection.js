@@ -139,24 +139,26 @@ function ItemsSection({ getPageSize }) {
     const [isLoading, error, getProductsAsync] = useAsync(getProducts);
 
     const handleLoad = useCallback (async (query) => {
+        
+        setPage(query.page);
+
         const result = await getProductsAsync(query);
         if(!result) return;
         
         const { list, totalCount } = result;
         setItems(list);
-        setPage(query.page);
         setTotal(totalCount);
-    }, [getProductsAsync])
+    }, [getProductsAsync]);
 
     const pageClickHandler = (i) => {
         handleLoad({ page: i, pageSize, orderBy, keyword });
-    }
+    };
     const orderClickHandler = (order) => {
         setOrderBy(order);
     };
     const searchHandler = (str) => {
         setKeyword(str);
-    }
+    };
 
     useEffect(() => {
         setPageSize(getPageSize(10, 6, 4));
